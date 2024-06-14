@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>登陆成功！即将自动跳转</h1>
+
+    <form id="redirectForm" action="/stu_system/dashboard/" method="post">
+        {% csrf_token %}
+        <input type="submit" style="display: none;">
+    </form>
+
+    <script>
+            setTimeout(function(){
+                document.getElementById("redirectForm").submit();
+            },3000);
+    </script>
+</body>
+</html>
