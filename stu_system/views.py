@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import *
 
 # Create your views here.
@@ -13,7 +13,7 @@ def login(request):
     if u and p:
         c = StuSystemStudentaccount.objects.filter(student_id=u , stu_password=p).count()
         if c > 0:
-            return HttpResponse("登录成功!")
+            return render(request,'login_success.html')
         else:
             return HttpResponse("账号或密码错误!")
     else:
