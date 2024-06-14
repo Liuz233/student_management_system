@@ -15,9 +15,9 @@ def login(request):
         if c > 0:
             return render(request,'login_success.html')
         else:
-            return HttpResponse("账号或密码错误!")
+            return render(request,'login_fail.html')
     else:
-        return HttpResponse("登录失败!")
+        return render(request,'login_fail.html')
 def toregister(request):
     return render(request,'register.html')
 
