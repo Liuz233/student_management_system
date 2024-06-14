@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
+</head>
+<body>
+<form action="/stu_system/register/" method = "post">
+    {% csrf_token %}
+    <p><label style="color: white">username:</label><input name="user"/></p>
+    <p><label style="color: white">password:</label><input name="pwd"/></p>
+    <input type="submit" value="注册">
+</form>
+</body>
+</html>
