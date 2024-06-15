@@ -7,13 +7,12 @@
     <link rel="stylesheet" href="{% static 'css/login_style.css' %}">
 </head>
 <body>
-<form action="/stu_system/index/" method="post">
+<form action="/admin_system/index/" method="post">
     {% csrf_token %}
     <p><label style="color: white">username:</label><input name="user"/></p>
     <p><label style="color: white">password:</label><input name="pwd"/></p>
     <div class="button-container">
         <input type="submit" value="登录">
-        <a href="/stu_system/toregister/">注册</a>
     </div>
 </form>
 </body>

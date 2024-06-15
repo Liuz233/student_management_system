@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>登陆成功！即将自动跳转</h1>
+    <h1>注册成功！即将跳转到登录界面</h1>
 
-    <form id="redirectForm" action="/stu_system/dashboard/" method="post">
+    <form id="redirectForm" action="/stu_system/" method="post">
         {% csrf_token %}
         <input type="submit" style="display: none;">
     </form>

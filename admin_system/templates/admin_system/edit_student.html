@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Student</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_style.css' %}">
+</head>
+<body>
+    <h1>Edit Student</h1>
+    <form method="POST" action="{% url 'edit_student' student.student_id %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ student.name }}"><br>
+
+        <label for="enrollment_date">Enrollment Date:</label>
+         <input type="date" name="enrollment_date" value="{{ student.enrollment_data|date:'Y-m-d' }}"><br>
+
+        <label for="major">Major:</label>
+        <input type="text" name="major" value="{{ student.major }}"><br>
+
+        <label for="awards_and_punishments">Awards and Punishments:</label>
+        <textarea name="awards_and_punishments">{{ student.awards_and_punishments }}</textarea><br>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

@@ -5,9 +5,9 @@
     <title>Title</title>
 </head>
 <body>
-    <h1>登陆成功！即将自动跳转</h1>
+    <h1>登陆失败！请重新输入账号密码</h1>
 
-    <form id="redirectForm" action="/stu_system/dashboard/" method="post">
+    <form id="redirectForm" action="/admin_system/" method="post">
         {% csrf_token %}
         <input type="submit" style="display: none;">
     </form>
@@ -15,7 +15,7 @@
     <script>
             setTimeout(function(){
                 document.getElementById("redirectForm").submit();
-            },2000);
+            },1000);
     </script>
 </body>
 </html>

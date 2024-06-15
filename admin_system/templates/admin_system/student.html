@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>学生管理</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <h1>学生管理</h1>
+
+    <table>
+        <tr>
+            <th>学号</th>
+            <th>姓名</th>
+            <th>入学时间</th>
+            <th>专业</th>
+            <th>奖惩情况</th>
+            <th>操作</th> <!-- 添加操作列名称 -->
+        </tr>
+        {% for student in students %}
+        <tr>
+            <td>{{ student.student_id }}</td>
+            <td>{{ student.name }}</td>
+            <td>{{ student.enrollment_data }}</td>
+            <td>{{ student.major }}</td>
+            <td>{{ student.awards_and_punishments }}</td>
+            <td>
+                <a href="{% url 'edit_student' student.student_id %}">修改</a> |
+                <a href="{% url 'delete_student' student.student_id %}">删除</a>
+            </td> <!-- 在每行末尾添加修改和删除按钮 -->
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">暂无学生信息</td> <!-- 调整合并单元格的列数 -->
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

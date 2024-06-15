@@ -27,6 +27,6 @@ def register(request):
     if u and p:
         stu = StuSystemStudentaccount(student_id=u , stu_password=p)
         stu.save()
-        return HttpResponse("注册成功！")
+        return render(request,'register_success.html')
     else:
         return HttpResponse("请输入完整账号及密码！")
