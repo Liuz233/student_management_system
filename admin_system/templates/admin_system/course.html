@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>课程管理</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/spect_student.css' %}">
+</head>
+<body>
+    <h1>课程管理</h1>
+
+    <div class="add-button">
+        <a href="{% url 'add_course' %}" style="background-color: #007bff; color: white; border: none; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; border-radius: 4px;">添加课程</a>
+    </div>
+
+    <table>
+        <tr>
+            <th>课程号</th>
+            <th>课程名</th>
+            <th>授课教师</th>
+            <th>开课年份</th>
+            <th>学分</th>
+            <th>操作</th>
+        </tr>
+        {% for course in courses %}
+        <tr>
+            <td>{{ course.course_id }}</td>
+            <td>{{ course.course_name }}</td>
+            <td>{{ course.instructor }}</td>
+            <td>{{ course.year_offered }}</td>
+            <td>{{ course.credits }}</td>
+            <td>
+                <a href="{% url 'edit_course' course.course_id %}" class="edit-button">修改</a> |
+                <a href="{% url 'delete_course' course.course_id %}" class="delete-button">删除</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">暂无课程信息</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -8,6 +8,15 @@
 from django.db import models
 
 
+class AdminSystemAccount(models.Model):
+    admin_user = models.CharField(primary_key=True, max_length=100)
+    admin_password = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'admin_system_account'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -138,6 +147,7 @@ class Enrollments(models.Model):
     student = models.OneToOneField('Students', models.DO_NOTHING, primary_key=True)  # The composite primary key (student_id, course_id) found, that is not supported. The first column is selected.
     course = models.ForeignKey(Courses, models.DO_NOTHING)
     grade = models.FloatField(blank=True, null=True)
+    gpa = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

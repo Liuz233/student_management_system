@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Grade</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_style2.css' %}">
+    <style>
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Edit Grade</h1>
+    <form method="POST" action="{% url 'edit_enrollment' enrollment.student_id enrollment.course_id %}">
+        {% csrf_token %}
+        <label for="student_id">Student ID:</label>
+        <input type="text" name="student_id" value="{{ enrollment.student_id }}" readonly><br>
+
+        <label for="course_id">Course ID:</label>
+        <input type="text" name="course_id" value="{{ enrollment.course_id }}" readonly><br>
+
+        <label for="grade">Grade:</label>
+        <input type="number" name="grade" value="{{ enrollment.grade }}" min="0" max="100" required>
+        {% if form.errors.grade %}
+            <p class="error">{{ form.errors.grade }}</p>
+        {% endif %}
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

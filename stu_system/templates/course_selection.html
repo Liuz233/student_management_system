@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Selection</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/select_course.css' %}">
+</head>
+<body>
+    <h1>Course Selection</h1>
+    <form method="post" action="{% url 'submit_selection' %}">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="course_id">Select a Course:</label>
+            <select id="course_id" name="course_id" required>
+                <option value="">--请选择一个课程--</option>
+                {% for course in courses %}
+                    <option value={{course.course_id}}>{{ course.course_id }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</body>
+</html>

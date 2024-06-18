@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Course</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_style2.css' %}">
+</head>
+<body>
+    <h1>Edit Course</h1>
+    <form method="POST" action="{% url 'edit_course' course.course_id %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" value="{{ course.course_name }}"><br>
+
+        <label for="instructor">instructor:</label>
+         <input type="text" name="instructor" value="{{ course.instructor }}"><br>
+
+        <div class="form-row">
+            <label for="year_offered">Year Offered:</label>
+            <input type="number" name="year_offered" value="{{ course.year_offered }}">
+        </div>
+
+        <div class="form-row">
+            <label for="credits">Credits:</label>
+            <input type="number" name="credits" value="{{ course.credits }}">
+        </div>
+
+        <input type="submit" value="Submit">
+    </form>
+</body>
+</html>

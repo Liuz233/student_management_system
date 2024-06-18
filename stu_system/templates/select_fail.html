@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>选课失败！你已经选过了这门课程</h1>
+
+    <form id="redirectForm" action="/stu_system/dashboard/" method="post">
+        {% csrf_token %}
+        <input type="submit" style="display: none;">
+    </form>
+
+    <script>
+            setTimeout(function(){
+                document.getElementById("redirectForm").submit();
+            },1000);
+    </script>
+</body>
+</html>

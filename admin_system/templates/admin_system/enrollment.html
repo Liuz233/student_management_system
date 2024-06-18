@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>选课管理</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/spect_enrollment.css' %}">
+</head>
+<body>
+    <h1>选课管理</h1>
+
+    <div class="add-button">
+        <a href="{% url 'add_enrollment' %}" style="background-color: #007bff; color: white; border: none; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; border-radius: 4px;">添加选课信息</a>
+    </div>
+
+    <table>
+        <tr>
+            <th style="width: 20%;">学生号</th>
+            <th style="width: 20%;">课程号</th>
+            <th style="width: 15%;">成绩</th>
+            <th style="width: 15%;">换算绩点</th>
+            <th style="width: 30%;">操作</th>
+        </tr>
+        {% for enrollment in enrollments %}
+        <tr>
+            <td>{{ enrollment.student_id }}</td>
+            <td>{{ enrollment.course_id }}</td>
+            <td>{{ enrollment.grade }}</td>
+            <td>{{ enrollment.gpa }}</td>
+            <td>
+                <a href="{% url 'edit_enrollment' enrollment.student_id enrollment.course_id %}" class="edit-button">修改成绩</a> |
+                <a href="{% url 'delete_enrollment' enrollment.student_id enrollment.course_id %}" class="delete-button">删除信息</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="6">暂无选课信息</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>

@@ -147,6 +147,7 @@ class Enrollments(models.Model):
     student = models.OneToOneField('Students', models.DO_NOTHING, primary_key=True)  # The composite primary key (student_id, course_id) found, that is not supported. The first column is selected.
     course = models.ForeignKey(Courses, models.DO_NOTHING)
     grade = models.FloatField(blank=True, null=True)
+    gpa = models.FloatField(blank=True, null=True)
 
     class Meta:
         managed = False

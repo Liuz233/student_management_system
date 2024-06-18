@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Enrollment</title>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/edit_style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
+</head>
+<body>
+    <h1>Add Enrollment</h1>
+
+    <form method="POST" action="{% url 'add_enrollment' %}">
+        {% csrf_token %}
+
+    <label for="course_id">Course:</label>
+    <select name="course_id" id="course_id" required>
+        <option value="">Please select a course</option>
+        {% for course in courses %}
+            <option value="{{ course.course_id }}">{{ course.course_id }}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+
+    <label for="student_id">Student:</label>
+    <select name="student_id" id="student_id" required>
+        <option value="">Please select a student</option>
+        {% for student in students %}
+            <option value="{{ student.student_id }}">{{ student.student_id }}</option>
+        {% endfor %}
+    </select>
+
+    <br>
+
+        <label for="grade">Grade:</label>
+        <input type="number" name="grade" id="grade" min="0" max="100" required>
+
+        <br>
+
+        <input type="submit" value="Add Enrollment">
+    </form>
+    {% if messages %}
+      {% for message in messages %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          {{ message }}
+          <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+      {% endfor %}
+    {% endif %}
+    <!-- 添加Bootstrap脚本 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.0/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

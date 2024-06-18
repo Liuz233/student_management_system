@@ -2,25 +2,15 @@
 <html>
 <head>
     <title>学生管理</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/spect_student.css' %}">
 </head>
 <body>
     <h1>学生管理</h1>
+
+    <div class="add-button">
+        <a href="{% url 'add_student' %}" style="background-color: #007bff; color: white; border: none; padding: 5px 10px; text-align: center; text-decoration: none; display: inline-block; cursor: pointer; border-radius: 4px;">添加学生</a>
+    </div>
 
     <table>
         <tr>
@@ -29,7 +19,7 @@
             <th>入学时间</th>
             <th>专业</th>
             <th>奖惩情况</th>
-            <th>操作</th> <!-- 添加操作列名称 -->
+            <th>操作</th>
         </tr>
         {% for student in students %}
         <tr>
@@ -39,13 +29,13 @@
             <td>{{ student.major }}</td>
             <td>{{ student.awards_and_punishments }}</td>
             <td>
-                <a href="{% url 'edit_student' student.student_id %}">修改</a> |
-                <a href="{% url 'delete_student' student.student_id %}">删除</a>
-            </td> <!-- 在每行末尾添加修改和删除按钮 -->
+                <a href="{% url 'edit_student' student.student_id %}" class="edit-button">修改</a> |
+                <a href="{% url 'delete_student' student.student_id %}" class="delete-button">删除</a>
+            </td>
         </tr>
         {% empty %}
         <tr>
-            <td colspan="6">暂无学生信息</td> <!-- 调整合并单元格的列数 -->
+            <td colspan="6">暂无学生信息</td>
         </tr>
         {% endfor %}
     </table>

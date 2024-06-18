@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Enrollment</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+    <div class="container">
+        <div class="top-right">
+            <a href="{% url 'course_selection' %}" class="button">选课</a>
+            <a href="{% url 'personal_info' %}" class="button">查看个人信息</a>
+        </div>
+        <h1>Hello, {{ student.student_id }}</h1>
+        <table>
+            <thead>
+                <tr>
+                    <th>Course ID</th>
+                    <th>Course Name</th>
+                    <th>Instructor</th>
+                    <th>Year Offered</th>
+                    <th>Credits</th>
+                    <th>Grade</th>
+                    <th>GPA</th>
+                    <th>操作</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enrollment in enrollments %}
+                    <tr>
+                        <td>{{ enrollment.course_id }}</td>
+                        <td>{{ enrollment.course.course_name }}</td>
+                        <td>{{ enrollment.course.instructor }}</td>
+                        <td>{{ enrollment.course.year_offered }}</td>
+                        <td>{{ enrollment.course.credits }}</td>
+                        <td>{{ enrollment.grade }}</td>
+                        <td>{{ enrollment.gpa }}</td>
+                        <td><a href="{% url 'withdraw_course' enrollment.course_id %}" class="button red">退课</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

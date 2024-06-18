@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Course Selection Confirmation</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css/submit_selection.css' %}">
+</head>
+<body>
+    <h1>Course Selection Confirmation</h1>
+    <p>是否确认选择以下课程：</p>
+    <div class="course-details">
+        <p><strong>Course ID:</strong> {{ course.course_id }}</p>
+        <p><strong>Course Name:</strong> {{ course.course_name }}</p>
+        <p><strong>Year Offered:</strong> {{ course.year_offered }}</p>
+        <p><strong>Credits:</strong> {{ course.credits }}</p>
+    </div>
+    <div class="buttons">
+        <form method="post" action="{% url 'confirm_selection' course.course_id %}">
+            {% csrf_token %}
+            <button type="submit" class="confirm-button">确认选课</button>
+        </form>
+        <a href="{% url 'cancel_selection' %}" class="cancel-button">取消选课</a>
+    </div>
+</body>
+</html>
+</html>
