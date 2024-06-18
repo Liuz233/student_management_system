@@ -1,5 +1,6 @@
 from django.urls import path
-
+from django.conf import settings
+from django.conf.urls.static import static
 from . import views
 urlpatterns = [
     path('',views.tologin),
@@ -14,4 +15,4 @@ urlpatterns = [
     path('dashboard/course_selection/submit_selection/confirm_selection/<str:course_id>/', views.confirm_selection, name='confirm_selection'),
     path('dashboard/course_selection/submit_selection/cancel_selection/', views.cancel_selection, name='cancel_selection'),
     path('dashboard/personal_info/upload_image/',views.upload_image,name='upload_image'),
-]
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

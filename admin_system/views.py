@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.db import connection
 import time
 # Create your views here.
+
 def toLogin(request):
     return render(request, 'admin_system/login.html')
 

@@ -5,8 +5,10 @@ from .models import *
 from django.db.models import F
 from django.urls import reverse
 from django.db import connection
+from django.db.models import Max
 import os
 # Create your views here.
+MEDIA_SERVER = 'http://127.0.0.1:8000/media/'
 def tologin(request):
     return render(request,'login.html')
 
@@ -101,10 +103,16 @@ def personal_info(request):
         cursor.execute(f"SELECT calculate_weighted_gpa('{student_id}')")
         gpa_result = cursor.fetchone()
         weighted_gpa = gpa_result[0] if gpa_result else 0.0
-    print('weighted_gpa:',weighted_gpa)
+    max_id_item = Image.objects.aggregate(max_id=Max('id'))
+    max_id = max_id_item['max_id']
+    print(max_id)
+    img_url = Image.objects.get(id=max_id,student_id=student_id).img.url
+    print(img_url)
     context = {
         'weighted_gpa': weighted_gpa,
         'student_id': student_id,
+        'img_url': img_url,
+        'MEDIA_URL': '/stu_system'
     }
     return render(request,'personal_info.html',context)
 
@@ -116,15 +124,20 @@ def upload_image(request):
     if request.method == 'POST' and request.FILES.get('image'):
         # 从会话中获取student_id
         student_id = request.session.get('user')
-
+        source = request.FILES.get('image')
+        image = Image(
+            img = source,
+            student_id=student_id
+        )
+        image.save()
         # 构建保存图片的路径
-        save_dir = os.path.join(settings.BASE_DIR, 'stu_system', 'static', 'images', str(student_id))
-        os.makedirs(save_dir, exist_ok=True)
-
-        image = request.FILES['image']
-        image_path = os.path.join(save_dir, 'personal.jpg')
-
-        with open(image_path, 'wb') as file:
-            file.write(image.read())
+        # save_dir = os.path.join(settings.BASE_DIR, 'stu_system', 'static', 'images', str(student_id))
+        # os.makedirs(save_dir, exist_ok=True)
+        #
+        # image = request.FILES['image']
+        # image_path = os.path.join(save_dir, 'personal.jpg')
+        #
+        # with open(image_path, 'wb') as file:
+        #     file.write(image.read())
     redirect_url = reverse('personal_info')
     return redirect(redirect_url)

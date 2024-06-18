@@ -18,7 +18,7 @@
     <h1 class="page-title">Welcome to Your Personal Page</h1>
 
     <div class="image-container">
-        <img src="{% static 'images/S001/personal.jpg' %}" alt="Uploaded Image" class="uploaded-image">
+        <img src= "{{ MEDIA_URL }}{{ img_url }}" alt="Uploaded Image" class="uploaded-image">
         <form method="POST" enctype="multipart/form-data" action="{% url 'upload_image' %}">
             {% csrf_token %}
             <input type="file" name="image" class="file-input">

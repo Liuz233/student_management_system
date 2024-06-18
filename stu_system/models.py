@@ -8,6 +8,15 @@
 from django.db import models
 
 
+class Adminsystemaccount(models.Model):
+    admin_user = models.CharField(primary_key=True, max_length=20)
+    admin_password = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'adminsystemaccount'
+
+
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -166,3 +175,8 @@ class Stusystemstudentaccount(models.Model):
     class Meta:
         managed = False
         db_table = 'stusystemstudentaccount'
+class Image(models.Model):
+    # 图片
+    img = models.ImageField(upload_to='img')
+    # 创建时间
+    student_id = models.CharField(max_length=20)
