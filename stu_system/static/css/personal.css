@@ -1,0 +1,55 @@
+/* style.css */
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-image: url('../images/personal_info.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    color: #fff;
+}
+
+.page-title {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.image-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.uploaded-image {
+    max-width: 400px;
+    height: auto;
+}
+
+.file-input {
+    margin-top: 10px;
+}
+
+.upload-button {
+    margin-top: 10px;
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.gpa-button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #337ab7;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+h2 {
+    color: #fff;
+}

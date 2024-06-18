@@ -15,7 +15,7 @@ def login(request):
     p = request.POST.get("pwd","")
     print(u, p)
     if u and p:
-        c = AdminSystemAccount.objects.filter(admin_user=u,admin_password=p).count()
+        c = Adminsystemaccount.objects.filter(admin_user=u,admin_password=p).count()
         if c > 0:
             return render(request,'admin_system/login_success.html')
         else:

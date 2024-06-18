@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+
 from .models import *
 from django.db.models import F
 from django.urls import reverse
@@ -14,7 +15,7 @@ def login(request):
     p = request.POST.get("pwd","")
 
     if u and p:
-        c = StuSystemStudentaccount.objects.filter(student_id=u , stu_password=p).count()
+        c = Stusystemstudentaccount.objects.filter(student_id=u , stu_password=p).count()
         if c > 0:
             request.session['user'] = u
             return render(request,'login_success.html')
@@ -33,7 +34,7 @@ def register(request):
         if c > 0:
             student = Students.objects.get(student_id=u)
             stu_name = student.name
-            stu = StuSystemStudentaccount(student_id=u , stu_name=stu_name, stu_password=p)
+            stu = Stusystemstudentaccount(student_id=u , stu_name=stu_name, stu_password=p)
             stu.save()
             return render(request,'register_success.html')
         else:

@@ -2,7 +2,9 @@
 <html>
 <head>
     <title>Personal Page</title>
-    <script>
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/personal.css' %}">
+        <script>
         function showGPA() {
             // 获取显示加权GPA的元素
             var gpaElement = document.getElementById("gpa");
@@ -11,22 +13,20 @@
             gpaElement.style.display = "block";
         }
     </script>
-
 </head>
 <body>
-    <h1>Welcome to Your Personal Page</h1>
-        <!-- 上传图片的表单 -->
-    <form method="POST" enctype="multipart/form-data" action="{% url 'upload_image' %}">
-        {% csrf_token %}
-        <input type="file" name="image">
-        <button type="submit">Upload Image</button>
-    </form>
+    <h1 class="page-title">Welcome to Your Personal Page</h1>
 
-    <!-- 显示上传的图片 -->
-    {% load static %}
-    <img src="{% static 'images/S001/personal.jpg' %}" alt="Uploaded Image">
-    <button onclick="showGPA()">Show GPA</button>
+    <div class="image-container">
+        <img src="{% static 'images/S001/personal.jpg' %}" alt="Uploaded Image" class="uploaded-image">
+        <form method="POST" enctype="multipart/form-data" action="{% url 'upload_image' %}">
+            {% csrf_token %}
+            <input type="file" name="image" class="file-input">
+            <button type="submit" class="upload-button">Upload Image</button>
+        </form>
+    </div>
 
+    <button onclick="showGPA()" class="gpa-button">Show GPA</button>
     <h2 id="gpa" style="display: none;">Your Weighted GPA: {{ weighted_gpa }}</h2>
 
     <!-- 其他页面内容... -->

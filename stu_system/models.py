@@ -8,15 +8,6 @@
 from django.db import models
 
 
-class AdminSystemAccount(models.Model):
-    admin_user = models.CharField(primary_key=True, max_length=100)
-    admin_password = models.CharField(max_length=100)
-
-    class Meta:
-        managed = False
-        db_table = 'admin_system_account'
-
-
 class AuthGroup(models.Model):
     name = models.CharField(unique=True, max_length=150)
 
@@ -155,16 +146,6 @@ class Enrollments(models.Model):
         unique_together = (('student', 'course'),)
 
 
-class StuSystemStudentaccount(models.Model):
-    student_id = models.CharField(primary_key=True, max_length=20)
-    stu_name = models.CharField(max_length=20)
-    stu_password = models.CharField(max_length=20)
-
-    class Meta:
-        managed = False
-        db_table = 'stu_system_studentaccount'
-
-
 class Students(models.Model):
     student_id = models.CharField(primary_key=True, max_length=20)
     name = models.CharField(max_length=50)
@@ -175,3 +156,13 @@ class Students(models.Model):
     class Meta:
         managed = False
         db_table = 'students'
+
+
+class Stusystemstudentaccount(models.Model):
+    student_id = models.CharField(primary_key=True, max_length=20)
+    stu_name = models.CharField(max_length=20, blank=True, null=True)
+    stu_password = models.CharField(max_length=20, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'stusystemstudentaccount'
